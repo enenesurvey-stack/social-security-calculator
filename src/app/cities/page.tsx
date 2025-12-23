@@ -172,7 +172,7 @@ export default function CitiesPage() {
       // 验证数据格式
       const requiredFields = ['city_name', 'year', 'rate', 'base_min', 'base_max']
       const invalidFields = requiredFields.filter(field =>
-        !jsonData[0] || jsonData[0][field] === undefined
+        !jsonData[0] || (jsonData[0] as any)[field] === undefined
       )
 
       if (invalidFields.length > 0) {
