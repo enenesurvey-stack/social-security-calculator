@@ -14,6 +14,6 @@ export const supabase = new Proxy({} as any, {
 
       clientInstance = createClient(url, key)
     }
-    return clientInstance[prop]
+    return (clientInstance as any)[prop]
   }
 })
