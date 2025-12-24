@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import type { AuthChangeEvent } from '@supabase/supabase-js'
+import type { AuthChangeEvent, Session } from '@supabase/supabase-js'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Upload, BarChart3, Settings, LogOut } from 'lucide-react'
@@ -29,7 +29,7 @@ export default function Home() {
     checkUser()
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event: AuthChangeEvent, session) => {
+      (event: AuthChangeEvent, session: Session | null) => {
         if (event === 'SIGNED_OUT') {
           router.push('/auth')
         } else if (event === 'SIGNED_IN') {
